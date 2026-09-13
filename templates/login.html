@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Log In
+{% endblock %}
+
+{% block main %}
+  <h1 style="text-align: center;">LOG IN</h1>
+
+  <form action="/login" method="post" class="buttons">
+    <input type='text' placeholder="username" name="username">
+    <input type='text' placeholder="password" name="password">
+    <button type="submit">LOG IN</button>
+  </form>
+
+  <div class="container">
+    <a href="/sign up" style="color: green; text-align: center;">Forgot Password</a>
+  </div>
+{% endblock %}
+
+
+
+
