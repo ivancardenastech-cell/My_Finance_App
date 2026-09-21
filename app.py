@@ -34,16 +34,18 @@ def log_in():
 
     # get the username and password from the form and check if they are correct
     if request.method == "POST":
-        if not request.form.get("username") or not request.form.get("password"):
-            return redirect("/")
-        
+        if not request.form.get("username"):
+            return render_template("login.html", message="Username is required")
+        if not request.form.get("password"):
+            return render_template("login.html", message="Password is required")
+
         username = request.form.get("username")
         password = request.form.get("password")
         rows = db.execute("SELECT * FROM users WHERE username = ?", username)
 
         # check if the username exists and if the password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return redirect("/")
+            return render_template("login.html", message="Invalid username and/or password")
         
         
         # store the user id in the session
@@ -80,7 +82,7 @@ def sign_up():
         # validate email
         if not email:
             return render_template("signup.html", is_valid=False, message="Email is required")
-        if @ not in email:
+        if "@" not in email:
             return render_template("signup.html", is_valid=False, message="Email must contain @")
 
         

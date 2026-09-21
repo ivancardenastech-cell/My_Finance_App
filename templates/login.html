@@ -6,6 +6,9 @@
 
 {% block main %}
   <h1 style="text-align: center;">LOG IN</h1>
+  {% if message %}
+    <div style="text-align: center; color: red;">{{ message }}</div>
+  {% endif %}
 
   <form action="/login" method="post" class="buttons">
     <input type='text' placeholder="username" name="username">
