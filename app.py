@@ -65,6 +65,25 @@ def sign_up():
         email = request.form.get("email")
         password = request.form.get("password")
 
+        # validate username
+        if not name:
+            return render_template("signup.html", is_valid=False, message="Name is required")
+        if len(name) < 3:
+            return render_template("signup.html", is_valid=False, message="Name must be at least 3 characters long")
+
+        # validate username
+        if not username:
+            return render_template("signup.html", is_valid=False, message="Username is required")
+        if len(username) < 1:
+            return render_template("signup.html", is_valid=False, message="Username must be at least 1 character long")
+
+        # validate email
+        if not email:
+            return render_template("signup.html", is_valid=False, message="Email is required")
+        if @ not in email:
+            return render_template("signup.html", is_valid=False, message="Email must contain @")
+
+        
         # validate the password using the password_validation function from helpers.py
         is_valid, message = password_validation(password)
         if is_valid == False:
