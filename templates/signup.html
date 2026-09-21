@@ -1,17 +1,20 @@
 {% extends "layout.html" %}
 
 {% block title %}
-   sign up
+sign up
 {% endblock %}
 
 {% block main %}
 <h1 style="text-align: center;">SIGN UP</h1>
+{% if is_valid == False %}
+<div style="text-align: center; color: red;">{{ message }}</div>
+{% endif %}
 <form action="/signup" class="buttons" method="POST">
     <input type="text" placeholder="Name" name="name">
     <input type="text" placeholder="Username" name="username">
     <input type="email" placeholder="Email" name="email">
-    <input type="text" placeholder="Password" name="password">
-    <input type="text" placeholder="Confirmation" name="confirmation">
+    <input type="password" placeholder="Password" name="password">
+    <input type="password" placeholder="Confirmation" name="confirmation">
     <button>Sign up</button>
 </form>
 {% endblock %}
